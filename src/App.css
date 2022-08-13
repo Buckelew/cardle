@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+h1 {
+  color: #fcfcfc;
+  margin-bottom: 0;
+  border-bottom: 1px solid white;
+}
+
+.App .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App .header > p {
+  margin-top: 0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+button:hover {
+  cursor: pointer;
+}
