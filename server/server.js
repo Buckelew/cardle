@@ -138,7 +138,7 @@ app.get("/cardetails", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 5125, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
