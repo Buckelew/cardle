@@ -33,9 +33,7 @@ function Won({ car }) {
 
   useEffect(() => {
     // get car details
-    fetch(
-      `http://localhost:5125/cardetails?make=${car.make}&model=${car.model}`
-    )
+    fetch(`/cardetails?make=${car.make}&model=${car.model}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.image && res.image.thumbnail) {
