@@ -2,10 +2,13 @@ const express = require("express");
 const rp = require("request-promise");
 const app = express();
 const fs = require("fs");
+const path = require("path");
 const port = 5125;
 
 const cars = require("../cars.json");
 const dates = require("./dates.json");
+
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 const getCar = () =>
   new Promise((resolve, reject) => {
@@ -78,7 +81,7 @@ app.get("/caroftheday", async (req, res) => {
     // get new car
     dates[formatted] = await getCar();
     // save dates.json
-    fs.writeFileSync("./src/server/dates.json", JSON.stringify(dates));
+    fs.writeFileSync("./server/dates.json", JSON.stringify(dates));
 
     // resolve
     res.json(dates[date]);
@@ -135,6 +138,10 @@ app.get("/cardetails", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 5125, () => {
   console.log(`Example app listening on port ${port}`);
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
 });

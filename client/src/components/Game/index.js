@@ -13,7 +13,7 @@ function Game() {
   const [guessInput, setGuessInput] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5125/caroftheday")
+    fetch("/caroftheday")
       .then((res) => res.json())
       .then((res) => {
         setCarOfTheDay(res);
