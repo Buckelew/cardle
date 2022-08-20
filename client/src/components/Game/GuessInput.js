@@ -94,7 +94,6 @@ function Datalist({ input, setInput }) {
         onChange={handleChange}
         autoComplete={"off"}
         placeholder="Enter a make, and model"
-        style={{ width: "200px" }}
         type="text"
         onBlur={handleBlur}
         onFocus={handleFocus}

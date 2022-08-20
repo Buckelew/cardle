@@ -38,6 +38,73 @@ function Table({ columns, data }) {
 
 export default Table;
 
+{/* <Table
+          data={guesses}
+          visibleColumns={2}
+          columns={[
+            {
+              Header: "Make",
+              accessor: "make",
+              Cell: ({ value }) => (
+                <div
+                  className={
+                    value == carOfTheDay.make ? "correct" : "incorrect"
+                  }
+                >
+                  {value}
+                </div>
+              ),
+            },
+            {
+              Header: "Model",
+              accessor: "model",
+              Cell: ({ value }) => (
+                <div
+                  className={
+                    value == carOfTheDay.model ? "correct" : "incorrect"
+                  }
+                >
+                  {value}
+                </div>
+              ),
+            },
+            {
+              Header: "Origin",
+              accessor: "origin",
+              Cell: ({ value }) => (
+                <div
+                  className={
+                    value == carOfTheDay.origin ? "correct" : "incorrect"
+                  }
+                >
+                  {value}
+                </div>
+              ),
+            },
+            {
+              Header: "Production Dates",
+              accessor: "years",
+              Cell: ({ value }) => (
+                <div className={value.style}>{value.value}</div>
+              ),
+            },
+            {
+              Header: "Body Styles",
+              accessor: "bodyStyles",
+              Cell: ({ value }) => (
+                <div className={value.style}>{value.value}</div>
+              ),
+            },
+            {
+              Header: "Engine",
+              accessor: "engine",
+              Cell: ({ value }) => {
+                return <div className={value.style}>{value.value}</div>;
+              },
+            },
+          ]}
+        /> */}
+
 {
   /* <table className="Game-table">
         <thead>

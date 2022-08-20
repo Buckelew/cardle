@@ -74,8 +74,8 @@ const getCarDetails = (carOfTheDay, make, model) =>
               ? "correct"
               : engineType == carOfTheDay.engineType ||
                 engineCyl == carOfTheDay.engineCyl
-              ? "partial"
-              : "incorrect";
+                ? "partial"
+                : "incorrect";
 
           resolve({
             bodyStyles: {
@@ -83,16 +83,16 @@ const getCarDetails = (carOfTheDay, make, model) =>
               style: bodyStylesStyle,
             },
             years: {
-              value: `${lowestYear} - ${highestYear}\n ${dateElement}`,
+              value: `${lowestYear}\n-\n${highestYear}\n ${dateElement}`,
               style: dateEstimate,
             },
             engine: { value: engine, style: engineStyle },
             engineType,
             engineCyl,
             seats,
-            origin,
-            make,
-            model,
+            origin: { value: origin, style: origin == carOfTheDay.origin ? 'correct' : 'incorrect' },
+            make: { value: make, style: make == carOfTheDay.make ? 'correct' : 'incorrect' },
+            model: { value: model, style: model == carOfTheDay.model ? 'correct' : 'incorrect' },
           });
         } else {
           alert(`Can't find car`);

@@ -1,7 +1,8 @@
 import "./Game.css";
 import { useState, useEffect, useRef } from "react";
 import Won from "../Won";
-import Datalist from "./Datalist";
+import Guess from "./GuessInput";
+import Guesses from './Guesses'
 import Table from "../hooks/Table";
 import getCarDetails from "../utils/getCarDetails";
 
@@ -28,8 +29,9 @@ function Game() {
       // find car from json file
       const guessedCar = await getCarDetails(carOfTheDay, make, model);
       if (guessedCar) {
-        const modelGuesses = guesses.map((trim) => trim.model.toLowerCase());
-        const makeGuesses = guesses.map((trim) => trim.make.toLowerCase());
+        console.log(guesses);
+        const modelGuesses = guesses.map((trim) => trim.model.value.toLowerCase());
+        const makeGuesses = guesses.map((trim) => trim.make.value.toLowerCase());
         if (
           !modelGuesses.includes(model.toLowerCase()) ||
           !makeGuesses.includes(make.toLowerCase())
@@ -55,77 +57,13 @@ function Game() {
 
   return (
     <div className="Game">
+
+      < Guesses guesses={guesses} />
+
       <div className="guess">
-        <Datalist input={guessInput} setInput={setGuessInput} />
-        <button onClick={guess}>Guess</button>
-      </div>
-      <div class="table">
-        <Table
-          data={guesses}
-          visibleColumns={2}
-          columns={[
-            {
-              Header: "Make",
-              accessor: "make",
-              Cell: ({ value }) => (
-                <div
-                  className={
-                    value == carOfTheDay.make ? "correct" : "incorrect"
-                  }
-                >
-                  {value}
-                </div>
-              ),
-            },
-            {
-              Header: "Model",
-              accessor: "model",
-              Cell: ({ value }) => (
-                <div
-                  className={
-                    value == carOfTheDay.model ? "correct" : "incorrect"
-                  }
-                >
-                  {value}
-                </div>
-              ),
-            },
-            {
-              Header: "Origin",
-              accessor: "origin",
-              Cell: ({ value }) => (
-                <div
-                  className={
-                    value == carOfTheDay.origin ? "correct" : "incorrect"
-                  }
-                >
-                  {value}
-                </div>
-              ),
-            },
-            {
-              Header: "Production Dates",
-              accessor: "years",
-              Cell: ({ value }) => (
-                <div className={value.style}>{value.value}</div>
-              ),
-            },
-            {
-              Header: "Body Styles",
-              accessor: "bodyStyles",
-              Cell: ({ value }) => (
-                <div className={value.style}>{value.value}</div>
-              ),
-            },
-            {
-              Header: "Engine",
-              accessor: "engine",
-              Cell: ({ value }) => {
-                return <div className={value.style}>{value.value}</div>;
-              },
-            },
-          ]}
-        />
+        <span>Guess today's car</span>
+        <Guess input={guessInput} setInput={setGuessInput} />
+        <button onClick={guess}>GUESS</button>
       </div>
 
       {hasWon ? <Won car={hasWon} /> : ""}
