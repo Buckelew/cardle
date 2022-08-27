@@ -1,34 +1,43 @@
 import cars from "../../cars.json";
+import "./GuessInput.css";
 import { useState, useRef, useEffect } from "react";
 
-function Datalist({ input, setInput }) {
+function Datalist({ guess }) {
+  const [guessInput, setGuessInput] = useState("");
+
   const inputRef = useRef(null);
   const [show, setShow] = useState(false);
 
   const handleChange = (e) => {
-    setInput(e.target.value);
+    setGuessInput(e.target.value);
   };
 
   // const activeInput = true;
-  const makes = Array.from(new Set(cars.map((car) => car.Make))).filter(
-    (make) => make.toLowerCase().startsWith(input.toLowerCase())
+  const makes = Array.from(new Set(cars.map((car) => car.make.display))).filter(
+    (make) => make.toLowerCase().startsWith(guessInput.toLowerCase())
   );
   let models;
 
-  if (input.length > 1 && input.includes(" ")) {
-    const make = input.split(" ")[0];
-    const model = input.split(" ")[1];
+  if (guessInput.length > 1 && guessInput.includes(" ")) {
+    const make = guessInput.split(" ")[0];
+    const model = guessInput.split(" ")[1];
     // filter out makes
-    models = cars.filter((car) => car.Make.toLowerCase() == make.toLowerCase());
-    models = Array.from(new Set(models.map((car) => car.Model)));
+    models = cars.filter(
+      (car) => car.make.display.toLowerCase() == make.toLowerCase()
+    );
+    models = Array.from(new Set(models.map((car) => car.model.display)));
     // filter models
     if (model) {
-      models = models.filter((m) => m.startsWith(model) && m !== model);
+      models = models.filter(
+        (m) =>
+          m.toLowerCase().startsWith(model.toLowerCase()) &&
+          m.toLowerCase() !== model.toLowerCase()
+      );
     }
   }
 
   const handleClick = (msg, focus) => {
-    setInput(msg);
+    setGuessInput(msg);
     if (focus) inputRef.current.focus();
   };
 
@@ -62,8 +71,8 @@ function Datalist({ input, setInput }) {
     );
   } else if (models && models.length) {
     // find make
-    const make = Array.from(new Set(cars.map((car) => car.Make))).find((m) =>
-      input.toLowerCase().startsWith(m.toLowerCase())
+    const make = Array.from(new Set(cars.map((car) => car.make.display))).find(
+      (m) => guessInput.toLowerCase().startsWith(m.toLowerCase())
     );
 
     datalistEl = (
@@ -84,49 +93,30 @@ function Datalist({ input, setInput }) {
       </ul>
     );
   }
-  // if (!models && makes && makes.length) {
+
   return (
-    <>
-      <input
-        id="guess"
-        list="cars-list"
-        value={input}
-        onChange={handleChange}
-        autoComplete={"off"}
-        placeholder="Enter a make, and model"
-        type="text"
-        onBlur={handleBlur}
-        onFocus={handleFocus}
-        ref={inputRef}
-      />
+    <div className="GuessInput">
+      <span>Guess today's car</span>
+      <div className="wrapper">
+        {show ? datalistEl : ""}
+        <input
+          id="guess"
+          list="cars-list"
+          className={show ? "show" : ""}
+          value={guessInput}
+          onChange={handleChange}
+          autoComplete={"off"}
+          placeholder="Enter a make, and model"
+          type="text"
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          ref={inputRef}
+        />
+      </div>
 
-      {show ? datalistEl : ""}
-    </>
+      <button onClick={() => guess(guessInput)}>GUESS</button>
+    </div>
   );
-  // } else if (models && models.length) {
-  //   // find make
-  //   const make = Array.from(new Set(cars.map((car) => car.Make))).find((m) =>
-  //     input.toLowerCase().startsWith(m.toLowerCase())
-  //   );
-
-  //   return (
-  //     <ul className={`datalist`}>
-  //       {models.map((model, i) => {
-  //         return show && activeInput.id == "guess" ? (
-  //           <li
-  //             className={`datalist-element`}
-  //             key={i}
-  //             onClick={() => handleClick(make + " " + model)}
-  //           >
-  //             {make + " " + model}
-  //           </li>
-  //         ) : (
-  //           ""
-  //         );
-  //       })}
-  //     </ul>
-  //   );
-  // }
 }
 
 export default Datalist;

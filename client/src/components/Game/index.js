@@ -2,71 +2,71 @@ import "./Game.css";
 import { useState, useEffect, useRef } from "react";
 import Won from "../Won";
 import Guess from "./GuessInput";
-import Guesses from './Guesses'
+import Guesses from "./Guesses";
 import Table from "../hooks/Table";
 import getCarDetails from "../utils/getCarDetails";
 
-function Game() {
+function Game({ setStats }) {
   const [guesses, setGuesses] = useState([]);
-  const [carOfTheDay, setCarOfTheDay] = useState();
   const [hasWon, setHasWon] = useState(false);
+  const [getUser, setGetUser] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [guessInput, setGuessInput] = useState("");
 
+  // get guesses from session
   useEffect(() => {
-    fetch("/caroftheday")
+    fetch("/v1/get-user")
       .then((res) => res.json())
       .then((res) => {
-        setCarOfTheDay(res);
-      });
-  }, []);
+        if (res.error) {
+          return alert(res.error);
+        }
+        const filteredGuesses = res.guesses.map((g) => g.car);
+        const correct = res.guesses.find((g) => g.correct);
+        if (res.guesses) {
+          setGuesses(filteredGuesses);
+        }
 
-  const guess = async () => {
+        if (res.stats) {
+          setStats(res.stats);
+        }
+
+        if (correct) {
+          setHasWon(correct.car);
+        }
+      });
+  }, [getUser]);
+
+  const guess = async (guessInput) => {
     const split = guessInput.split(/[, ]+/);
     const make = split.shift();
     const model = split.join("+");
-    if (make && model) {
-      // find car from json file
-      const guessedCar = await getCarDetails(carOfTheDay, make, model);
-      if (guessedCar) {
-        console.log(guesses);
-        const modelGuesses = guesses.map((trim) => trim.model.value.toLowerCase());
-        const makeGuesses = guesses.map((trim) => trim.make.value.toLowerCase());
-        if (
-          !modelGuesses.includes(model.toLowerCase()) ||
-          !makeGuesses.includes(make.toLowerCase())
-        ) {
-          if (
-            guessedCar.make == carOfTheDay.make &&
-            guessedCar.model == carOfTheDay.model
-          ) {
-            // alert("WOOO! You got it!");
-            setHasWon(guessedCar);
-          }
-          setGuesses([...guesses, guessedCar]);
-        } else {
-          alert("Car already guessed!");
-        }
-      } else {
-        alert("Car not found");
-      }
-    } else {
+
+    if (!make || !model) {
       alert("Enter make, and model. Seperated by a space or comma");
+      return;
     }
+
+    fetch(`/v1/guess?make=${make}&model=${model}`)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.error) {
+          return alert(res.error);
+        }
+        if (res.correct) {
+          setGetUser(!getUser);
+          setHasWon(res.car);
+        }
+        setGuesses([...guesses, res.car]);
+      });
   };
 
   return (
     <div className="Game">
+      <Guesses guesses={guesses} />
 
-      < Guesses guesses={guesses} />
+      <Guess guess={guess} />
 
-      <div className="guess">
-        <span>Guess today's car</span>
-        <Guess input={guessInput} setInput={setGuessInput} />
-        <button onClick={guess}>GUESS</button>
-      </div>
-
-      {hasWon ? <Won car={hasWon} /> : ""}
+      {hasWon ? <Won car={hasWon} setHasWon={setHasWon} /> : ""}
     </div>
   );
 }
