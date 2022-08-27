@@ -1,0 +1,152 @@
+.GuessInput {
+  height: 150px;
+  width: 80%;
+
+  /* padding-left: 30px; */
+
+  background: linear-gradient(
+    107.56deg,
+    rgba(71, 71, 71, 0.39) 0%,
+    rgba(0, 0, 0, 0.37) 100%
+  );
+  border: 1px solid #525252;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: visible;
+
+  /* position: abo; */
+  justify-self: flex-end;
+
+  margin: 25px auto;
+}
+
+.GuessInput span {
+  text-align: left;
+  margin-top: 10px;
+  margin-left: 30px;
+
+  font-weight: 400;
+  font-size: 100%;
+}
+
+/* @media screen and (max-width: 900px) {
+  .GuessInput span {
+
+  }
+} */
+
+.GuessInput input {
+  margin: 0 30px;
+  min-width: 100px;
+  width: 70%;
+  max-width: 30vmax;
+  height: 3vmax;
+  max-height: 50px;
+  background-color: transparent;
+
+  text-indent: 5px;
+
+  color: white;
+
+  border: 1px solid #525252;
+  border-radius: 15px;
+}
+
+.GuessInput input::placeholder {
+  font-style: normal;
+  font-weight: 400;
+  /* font-size: 18px; */
+  font-size: 120%;
+
+  color: #525252;
+}
+
+.GuessInput button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 3vmax;
+  max-height: 30px;
+
+  outline: none;
+  border: none;
+
+  background: radial-gradient(
+    149.82% 298.55% at 50.18% 50%,
+    #33e356 0%,
+    #ffffff 100%
+  );
+  box-shadow: 0px 0px 15px #33e356;
+  border-radius: 15px;
+
+  font-weight: 700;
+  font-size: 2vh;
+  line-height: 23px;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+.GuessInput button:active {
+  border: 1px solid #fcfcfc;
+}
+
+.GuessInput {
+  position: relative;
+}
+
+.GuessInput .wrapper {
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+
+.GuessInput ul.datalist {
+  position: absolute;
+  top: auto;
+  bottom: 100%;
+  width: 400px;
+  z-index: 1;
+  left: -1px;
+  box-sizing: content-box;
+  border-bottom: none;
+  margin: 0px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  padding: 0px;
+
+  list-style: none;
+  border: 1px solid white;
+
+  max-height: 300px;
+  overflow: scroll;
+
+  border-radius: 15px;
+
+  background: linear-gradient(107.56deg, #474747 0%, #000000 100%);
+}
+.GuessInput ul.datalist li.show {
+  display: flex;
+}
+
+.GuessInput ul.datalist li {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #707070; */
+  cursor: pointer;
+  user-select: none;
+}
+
+@media (max-width: 900px) {
+  .GuessInput {
+    width: 100%;
+  }
+  .GuessInput input {
+    font-size: 12px;
+  }
+}

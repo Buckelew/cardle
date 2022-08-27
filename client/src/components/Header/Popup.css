@@ -1,0 +1,100 @@
+div.Popup {
+  background-color: rgba(0, 0, 0, 0.35);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 4;
+}
+
+div.Popup-content {
+  background: linear-gradient(107.56deg, #323232 0%, #000000 100%);
+  border: 1px solid #525252;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+
+  padding: 20px;
+
+  min-width: 300px;
+  width: 40vw;
+  max-width: 1000px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.Popup .Popup-header {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+
+  margin-bottom: 20px;
+}
+
+div.Popup .Popup-header h3 {
+  margin: 0;
+  margin-left: auto;
+  padding: 0;
+  font-size: 3vmin;
+  color: #d6d6d6;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+div.Popup .Popup-header img {
+  margin-left: auto;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+
+div.Popup .user-guess > img {
+  border-radius: 8px;
+  border: 2px solid white;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.animate-charcter {
+  background-image: linear-gradient(
+    -225deg,
+    #231557 0%,
+    #44107a 29%,
+    #ff1361 67%,
+    #fff800 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 3s linear infinite;
+  display: inline-block;
+  font-size: 190px;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+
+.Popup .Popup-body {
+  margin: 0 auto;
+  /* width: 80%; */
+  /* margin-bottom: 20px; */
+}
+
+.Popup .Popup-body span.bold {
+  text-transform: capitalize;
+}
+
+.Popup .Popup-footer p {
+  font-size: 20px;
+}

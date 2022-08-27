@@ -1,7 +1,8 @@
 import "./Won.css";
 import { useState, useEffect, useRef } from "react";
+import x from "../../assets/x.png";
 
-function Won({ car }) {
+function Won({ car, setHasWon }) {
   const [countdown, setCountdown] = useState(``);
   const [carImage, setCarImage] = useState();
   const [loading, setLoading] = useState(true);
@@ -33,7 +34,7 @@ function Won({ car }) {
 
   useEffect(() => {
     // get car details
-    fetch(`/cardetails?make=${car.make}&model=${car.model}`)
+    fetch(`/v1/car-details?make=${car.make.value}&model=${car.model.value}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.image && res.image.thumbnail) {
@@ -62,24 +63,31 @@ function Won({ car }) {
   // if (wonRef && wonRef.current)
   //   wonRef.current.scrollIntoView({ behavior: "smooth" });
 
+  console.log(car);
+
   return !loading ? (
     <div className="Won" ref={wonRef}>
-      <h3 className="animate-charcter">You got it!</h3>
-      <div className="user-guess">
-        <img src={carImage} alt="car" />
-        <p>
-          You guessed
-          <br />
-          <span className="bold">{`${car.make} ${car.model}`}</span>
-        </p>
-      </div>
-      {/* <br /> */}
-      <div className="next">
-        <p>
-          Next car in
-          <br />
-          <span className="bold">{countdown}</span>
-        </p>
+      <div class="Won-content">
+        <div class="header">
+          <h3 className="">You got it!</h3>
+          <img src={x} alt="close" onClick={() => setHasWon(false)} />
+        </div>
+        <div className="user-guess">
+          <img src={carImage} alt="car" />
+          <p>
+            You guessed
+            <br />
+            <span className="bold">{`${car.make.value} ${car.model.value}`}</span>
+          </p>
+        </div>
+        {/* <br /> */}
+        <div className="next">
+          <p>
+            Next car in
+            <br />
+            <span className="bold">{countdown}</span>
+          </p>
+        </div>
       </div>
     </div>
   ) : (

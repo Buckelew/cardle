@@ -1,14 +1,15 @@
+import { useState } from "react";
 import "./App.css";
 import Game from "./components/Game";
+import Header from "./components/Header";
 
 function App() {
+  const [stats, setStats] = useState();
+  console.log(stats);
   return (
     <div className="App">
-      <div className="header">
-        <h1>Cardle</h1>
-        <p>Guess today's car!</p>
-      </div>
-      <Game />
+      <Header stats={stats} />
+      <Game setStats={setStats} />
     </div>
   );
 }
