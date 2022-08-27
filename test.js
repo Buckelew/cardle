@@ -1,9 +1,9 @@
 const cars = require("./server/carData.json");
 
-const makes = new Set();
+const origins = new Set();
 
 cars.forEach((car) => {
-  makes.add(car.make.value);
+  origins.add(car.origin.value);
 });
 
-console.log(Array.from(makes).join("\n"));
+console.log(Array.from(origins).join("\n"));

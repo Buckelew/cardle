@@ -2,9 +2,13 @@ import Square from "./Square";
 
 import makes from "../../assets/makes";
 
+import usa from "../../assets/origins/usa.webp";
 import germany from "../../assets/origins/germany.jpg";
 import japan from "../../assets/origins/japan.png";
-import usa from "../../assets/origins/usa.webp";
+import south_korea from "../../assets/origins/south_korea.webp";
+import uk from "../../assets/origins/uk.png";
+import sweden from "../../assets/origins/sweden.png";
+import italy from "../../assets/origins/italy.png";
 import black from "../../assets/black.jpg";
 import engine from "../../assets/engine.png";
 
@@ -41,6 +45,18 @@ function Guess({ guess }) {
       break;
     case "usa":
       originImg = usa;
+      break;
+    case "south korea":
+      originImg = south_korea;
+      break;
+    case "uk":
+      originImg = uk;
+      break;
+    case "sweden":
+      originImg = sweden;
+      break;
+    case "italy":
+      originImg = italy;
       break;
     default:
       originImg = black;
