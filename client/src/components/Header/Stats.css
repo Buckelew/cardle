@@ -1,0 +1,25 @@
+.Popup .Stats-footer > div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Popup .Stats-footer > div > p {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Popup .Stats-footer > div > p > span {
+  font-size: 2vmin;
+}
+
+@media (max-width: 900px) {
+  .Popup .Stats-footer > div > p {
+    font-size: 12px;
+  }
+
+  .Popup .Stats-footer > div > p > span {
+    font-size: 12px;
+  }
+}

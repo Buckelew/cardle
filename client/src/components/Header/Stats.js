@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import "./Stats.css";
 import { Bar } from "react-chartjs-2";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 import { faFileZipper } from "@fortawesome/free-solid-svg-icons";
@@ -113,54 +114,22 @@ export default ({ setShowStats, stats }) => {
       }
       title="Statistics"
       footer={
-        <div style={{ borderTop: "2px solid white" }}>
-          <div style={{ display: "flex", justifyContent: "space-around" }}>
-            <p
-              style={{
-                fontSize: "16px",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <span style={{ fontSize: "2.5vmin" }} class="bold">
-                {played}
-              </span>
+        <div className="Stats-footer" style={{ borderTop: "2px solid white" }}>
+          <div>
+            <p>
+              <span class="bold">{played}</span>
               Played
             </p>
-            <p
-              style={{
-                fontSize: "16px",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <span style={{ fontSize: "2.5vmin" }} class="bold">
-                {winRate ? winRate : 0}%
-              </span>
+            <p>
+              <span class="bold">{winRate ? winRate : 0}%</span>
               Win Rate
             </p>
-            <p
-              style={{
-                fontSize: "16px",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <span style={{ fontSize: "2.5vmin" }} class="bold">
-                {currentStreak}
-              </span>
+            <p>
+              <span class="bold">{currentStreak}</span>
               Current Streak
             </p>
-            <p
-              style={{
-                fontSize: "16px",
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <span style={{ fontSize: "2.5vmin" }} class="bold">
-                {maxStreak}
-              </span>
+            <p>
+              <span class="bold">{maxStreak}</span>
               Max Streak
             </p>
           </div>
