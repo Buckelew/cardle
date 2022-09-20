@@ -16,7 +16,7 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "concurrently \"node server/server.js\" \"cd client && npm run start\"",
-    "build": "cd client && npm install && npm run build"
+    "build": "cd client && npm install && npm run build && cd .. && npm run start"
   },
   "engines": {
     "node": "16.13.0"
