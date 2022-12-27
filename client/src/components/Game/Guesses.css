@@ -3,8 +3,7 @@
   grid-template-columns: repeat(6, calc(15vmin - 20px));
   grid-template-rows: repeat(6, calc(15vmin - 20px));
 
-  /* gap: 20px; */
-  column-gap: 1em;
+  gap: 1em;
 
   /* max-width: 60vmin; */
 
