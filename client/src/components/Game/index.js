@@ -36,7 +36,8 @@ function Game({ setStats }) {
       });
   }, [getUser]);
 
-  const guess = async (guessInput) => {
+  const guess = async (e, guessInput) => {
+    e.preventDefault();
     const split = guessInput.split(/[, ]+/);
     const make = split.shift();
     const model = split.join("+");

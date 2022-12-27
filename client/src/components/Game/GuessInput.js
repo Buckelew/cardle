@@ -95,7 +95,7 @@ function Datalist({ guess }) {
   }
 
   return (
-    <div className="GuessInput">
+    <form className="GuessInput" onSubmit={(e) => guess(e, guessInput)}>
       <span>Guess today's car</span>
       <div className="wrapper">
         {show ? datalistEl : ""}
@@ -114,8 +114,8 @@ function Datalist({ guess }) {
         />
       </div>
 
-      <button onClick={() => guess(guessInput)}>GUESS</button>
-    </div>
+      <button >GUESS</button>
+    </form >
   );
 }
 
