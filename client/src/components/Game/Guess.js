@@ -79,6 +79,7 @@ function Guess({ guess }) {
     if (style == "wagon") bodyStyleImgs.push(wagon);
   });
 
+  console.log(guess.origin)
   return (
     <>
       <Square title="Make" image={makeImg} style={guess.make.style} />
@@ -90,6 +91,7 @@ function Guess({ guess }) {
       <Square
         title="Origin"
         image={originImg}
+        text={guess.origin.display}
         style={guess.origin.style + " origin"}
       />
       <Square
